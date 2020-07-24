@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import random
 import string
 
 chars = string.ascii_letters + string.digits + string.punctuation
-special_characters = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 pass_length = int(input("password length [6-15]\n: "))
 
 def passgen ():
