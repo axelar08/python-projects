@@ -1,18 +1,27 @@
-#!/usr/bin/env python
-import random
-import string
+import random, string
 
-chars = string.ascii_letters + string.digits + string.punctuation
-pass_length = int(input("password length [6-15]\n: "))
-
-def passgen ():
-    pwd = ""
-    for x in range(pass_length):
-        pwd += random.choice(chars)
-    print(pwd)
+theLetters = string.ascii_letters
+capitalLts = theLetters.upper()
+spcCharacters = string.punctuation
+dgts = string.digits
+def GetLength(): # Obvious; Gets the desired password length
+    length = input("Type Desired Length: ")
+    if not length:
+        return 0
+    return int(length)
+def Generator(length=8): # Funtion to generate password based on random
+    printable = f'{theLetters}{capitalLts}{dgts}{spcCharacters}'
+    printable = list(printable)
+    random.shuffle(printable)
+    random_password = random.choices(printable, k=length)
+    random_password = ''.join(random_password)
+    return random_password
 
 while 1:
-    passgen()
-    x = str(input(": "))
-    if x == "exit":
-        break
+    passwd_length = GetLength()
+    if passwd_length == 0:
+        passwd = Generator()
+        print(f'password (default):\t\t{passwd}')
+    else:
+        passwd = Generator(passwd_length)
+        print(f'password ({str(len(passwd))}):\t\t{passwd}')
